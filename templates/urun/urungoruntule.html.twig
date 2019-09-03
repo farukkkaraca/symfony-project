@@ -1,0 +1,8 @@
+{%  extends 'base.html.twig' %}
+{% block body %}
+    <strong>İd: </strong>{{ urun.id }}<br>
+    <strong>İsim: </strong>{{ urun.isim }}<br>
+    <strong>Durum: </strong>{{ urun.durum }}<br>
+    <strong>Oluşturulma Tarihi: </strong>{{ urun.olusturulmaTarihi|date }}<br>
+    <strong>Güncellenme Tarihi: </strong>{{ urun.guncellenmeTarihi|date }}
+{% endblock %}

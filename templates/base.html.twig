@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}Project-01 {% endblock %}</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+          integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+          crossorigin="anonymous">
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+
+                    <li>
+                        <a class="nav-link" href="{{ path('urunler_listesi') }}">Ürün Sayfası</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('yeni_urun_ekle') }}">Yeni Ürün Ekle</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header><br>
+
+<main role="main" class="container main">
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('duzenle') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+
+    {% block body %}{% endblock %}
+</main>
+{% block javascripts %}{% endblock %}
+
+</body>
+
+<style>
+    {% block style %}
+    {% endblock %}
+</style>
+
+</html>

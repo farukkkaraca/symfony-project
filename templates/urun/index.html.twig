@@ -1,0 +1,40 @@
+{%  extends 'base.html.twig' %}
+{% block body %}
+    <head ><strong><hr>Ürün Listesi: <hr></strong></head>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Isim</th>
+            <th>Durum</th>
+            <th>Fiyat</th>
+
+
+        </tr>
+        <body>
+        {% for urun in urunler %}
+            <tr>
+                <td><a class="nav-link" href="{{ path('urun_goruntule',{'id':urun.id}) }}">{{ urun.id }}</a></td>
+                <td>{{ urun.isim }}</td>
+                <td>{{ urun.durum }}</td>
+                <td>{{ urun.fiyat }}</td>
+                <td><a class="nav-link" href="{{ path('urun_duzenle',{'id':urun.id}) }}">Düzenlemek İçin Tıklayın</a></td>
+                <td><a class="nav-link" href="{{ path('urun_silme',{'id':urun.id}) }}">Ürünü Sil<a</td>
+            </tr>
+        {% endfor %}
+        </body>
+    </table>
+
+{% endblock %}
+{% block style %}
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 70%;
+    }
+    td, th {
+    border: 0px solid #dddddd;
+    text-align: left;
+    padding: 6px;
+    }
+
+{% endblock %}
