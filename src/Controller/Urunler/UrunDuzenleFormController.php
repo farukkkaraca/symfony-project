@@ -1,27 +1,28 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\Urunler;
 use App\Entity\Urun;
-use App\Form\EditType;
+use App\Form\UrunDuzenleType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class EditController extends AbstractController
+class UrunDuzenleController extends AbstractController
 {
     /**
      * @Route("urunler/duzenle/{id}",name="urun_duzenle")
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function urunDuzenle(Request $request,$id)
     {
         $urun=$this->getDoctrine()->getRepository(Urun::class)->find($id);
 
-        $form=$this->createForm(EditType::class,$urun);
+        $form=$this->createForm(UrunDuzenleType::class,$urun);
 
         $form->handleRequest($request);
 

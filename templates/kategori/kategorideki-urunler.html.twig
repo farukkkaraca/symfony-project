@@ -1,0 +1,19 @@
+{%  extends 'base.html.twig' %}
+{% block body %}
+    <table>
+    <tr>
+        <th>İd</th>
+        <th>İsim</th>
+    </tr>
+    <body>
+    {% for urun in urunler %}
+        <tr>
+            <td>{{ urun.id}}</td>
+            <td>{{ urun.isim }}</td>
+
+        </tr>
+    {% endfor  %}
+
+    <a class="nav btn btn-info" href="{{ path('kategoriye_urun_ekle',{'id':kategori.id}) }}">Kategoriye Yeni Ürün Ekle</a>
+
+{% endblock %}

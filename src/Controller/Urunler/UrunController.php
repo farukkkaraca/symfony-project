@@ -34,7 +34,7 @@ class UrunController extends AbstractController
     public function goruntule(Urun $urun)
     {
 
-        return new Response($this->renderView('urun/urungoruntule.html.twig',[
+        return new Response($this->renderView('urun/goruntule.html.twig',[
             'urun'=>$urun,
         ]));
 
