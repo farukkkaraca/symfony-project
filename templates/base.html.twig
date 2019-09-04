@@ -17,18 +17,21 @@
 
 <header>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+
         <div class="container">
+
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-
+                    <li>
+                        <a class="nav-link" href="{{ path('anasayfa') }}">Anasayfa</a>
+                    </li>
                     <li>
                         <a class="nav-link" href="{{ path('urunler_listesi') }}">Ürün Sayfası</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('yeni_urun_ekle') }}">Yeni Ürün Ekle</a>
+                    <li>
+                        <a class="nav-link" href="{{ path('kategoriler') }}">Kategoriler</a>
                     </li>
-
                 </ul>
             </div>
         </div>
@@ -43,13 +46,6 @@
         </div>
     {% endfor %}
 
-    {% for message in app.flashes('duzenle') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
-
-
     {% block body %}{% endblock %}
 </main>
 {% block javascripts %}{% endblock %}
@@ -59,6 +55,7 @@
 <style>
     {% block style %}
     {% endblock %}
+
 </style>
 
 </html>

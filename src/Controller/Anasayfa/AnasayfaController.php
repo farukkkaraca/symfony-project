@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Anasayfa;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class Anasayfa1Controller extends AbstractController
+class AnasayfaController extends AbstractController
 {
     /**
-     * @Route("anasayfa-template",name="anasayfa-template")
+     * @Route("anasayfa",name="anasayfa")
      * @return Response
      */
     public function anasayfa()
     {
-        return $this->render('anasayfa-template/anasayfa.html.twig');
+        return $this->render('anasayfa/anasayfa.html.twig');
 
     }
 }

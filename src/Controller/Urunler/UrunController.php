@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Urunler;
 use App\Entity\Urun;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +20,7 @@ class UrunController extends AbstractController
 
         $urunrepository=$this->getDoctrine()->getRepository(Urun::class);
         $urunler=$urunrepository->findAll();
-        return $this->render('urun/index.html.twig',[
+        return $this->render('urun/urun-sayfası.html.twig',[
             'urunler'=>$urunler,
         ]);
 
@@ -34,68 +34,12 @@ class UrunController extends AbstractController
     public function goruntule(Urun $urun)
     {
 
-        return new Response($this->renderView('urun/goruntule.html.twig',[
+        return new Response($this->renderView('urun/urun-bilgileri.html.twig',[
             'urun'=>$urun,
         ]));
 
     }
 
-    //Ürün Ekleme
-
-    /**
-     * @Route("urunler/ekleme",name="urun_ekleme")
-     * @return Response
-     * @throws \Exception
-     */
-    public function ekleme()
-    {
-        $em=$this->getDoctrine()->getManager();
-        $urun=new Urun();
-        $urun
-            ->setIsim('Mause Pad')
-            ->setFiyat(40)
-            ->setDurum('stokta var')
-            ->setOlusturulmaTarihi(new \DateTime())
-            ->setGuncellenmeTarihi(new \DateTime());
-        $em->persist($urun);
-        $em->flush();
-
-        return new Response(sprintf('urun başarıyla oluşturuldu %s isim %s',$urun->getId(),$urun->getIsim()));
-    }
-
-    //id ile ürün getirme
-
-    /**
-     * @Route("/urunler/bul/{id}",name="urun_bul")
-     * @return Response
-     */
-    public function bul($id,Urun $urun)
-    {
-        return new Response(sprintf('ürün getirildi id: %s isim: %s',$urun->getId(),$urun->getIsim()));
-    }
-
-    //Ürün Güncelleme
-
-    /**
-     * @Route("/urunler/guncelleme/{id}",name="urun_update")
-     * @return Response
-     */
-    public function guncelleme($id, Request $request)
-    {
-        $isim=$request->get('isim');
-        $em=$this->getDoctrine()->getManager();
-        $urunrepo=$em->getRepository(Urun::class);
-
-        $urun=$urunrepo->find($id);
-        $urun
-            ->setIsim($isim)
-            ->setFiyat(199);
-
-        $em->persist($urun);
-        $em->flush();
-
-        return new Response(sprintf('Ürün başarı ile güncellendi id: %s isim %s', $urun->getId(), $urun->getIsim()));
-    }
     //Ürün silme
 
     /**

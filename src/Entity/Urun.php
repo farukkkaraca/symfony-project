@@ -41,6 +41,12 @@ class Urun
      */
     private $guncellenmeTarihi;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Kategori", inversedBy="uruns", cascade={"remove"})
+     * @ORM\JoinColumn(name="kategori_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $kategori;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +108,18 @@ class Urun
     public function setGuncellenmeTarihi(\DateTimeInterface $guncellenmeTarihi): self
     {
         $this->guncellenmeTarihi = $guncellenmeTarihi;
+
+        return $this;
+    }
+
+    public function getKategori(): ?Kategori
+    {
+        return $this->kategori;
+    }
+
+    public function setKategori(?Kategori $kategori): self
+    {
+        $this->kategori = $kategori;
 
         return $this;
     }

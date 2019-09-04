@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class UrunDuzenleController extends AbstractController
+class UrunDuzenleFormController extends AbstractController
 {
     /**
      * @Route("urunler/duzenle/{id}",name="urun_duzenle")
