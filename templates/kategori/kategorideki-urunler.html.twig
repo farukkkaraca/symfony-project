@@ -1,19 +1,18 @@
 {%  extends 'base.html.twig' %}
 {% block body %}
     <table>
-    <tr>
-        <th>İd</th>
-        <th>İsim</th>
-    </tr>
+       <strong>Bu Kategorideki Ürünler:</strong>
+
     <body>
     {% for urun in urunler %}
-        <tr>
-            <td>{{ urun.id}}</td>
-            <td>{{ urun.isim }}</td>
-
-        </tr>
+            <a class="nav btn btn-info" href="{{ path('urun_goruntule',{'id':urun.id}) }}">{{urun.isim}}</a>
     {% endfor  %}
-
-    <a class="nav btn btn-info" href="{{ path('kategoriye_urun_ekle',{'id':kategori.id}) }}">Kategoriye Yeni Ürün Ekle</a>
-
+    <hr>
+    <a class="nav btn btn-warning" href="{{ path('kategoriye_urun_ekle',{'id':kategori.id}) }}">Kategoriye Yeni Ürün Ekle</a>
+    </body>
+    </table>
 {% endblock %}
+
+
+
+

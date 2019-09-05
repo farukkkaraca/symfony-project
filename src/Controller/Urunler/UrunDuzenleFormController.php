@@ -38,7 +38,7 @@ class UrunDuzenleFormController extends AbstractController
 
 
 
-        return $this->render('form/new.html.twig',[
+        return $this->render('urun/urun-duzenle.html.twig',[
             'form'=>$form->createView(),
         ]);
 

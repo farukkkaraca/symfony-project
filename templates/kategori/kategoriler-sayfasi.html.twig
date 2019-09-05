@@ -1,16 +1,32 @@
 {%  extends 'base.html.twig' %}
 {% block body %}
    <table>
-   <tr>
 
-      <th>Kategoriler</th>
+      <th>>>>>>>>>KATEGORİLER<<<<<<<</th>
 
-   </tr>
+
    <body>
    {% for kategori in kategori %}
       <tr>
-         <td><a class="btn btn-info" href="{{ path('kategoriler_id',{'id':kategori.id}) }}">{{kategori.isim}}</a></td>
+         <td><a class="nav btn btn-warning" href="{{ path('kategoriler_id',{'id':kategori.id}) }}">{{kategori.isim}}</a></td>
       </tr>
    {% endfor  %}
+   </body>
 
 {% endblock %}
+      {% block style2 %}
+         table {
+         font-family: arial, sans-serif;
+         border-collapse: collapse;
+         width: 40%;
+         }
+         td, th {
+         border: 2px solid #dddddd;
+         text-align: left;
+         padding: 5px;
+         }
+
+
+
+      {% endblock %}
+
