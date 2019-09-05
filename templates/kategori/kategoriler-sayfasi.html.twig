@@ -8,7 +8,7 @@
    <body>
    {% for kategori in kategori %}
       <tr>
-         <td><a class="nav btn btn-warning" href="{{ path('kategoriler_id',{'id':kategori.id}) }}">{{kategori.isim}}</a></td>
+         <td><a class="nav btn btn-warning" style="background-color: #F5871F" teal" href="{{ path('kategoriler_id',{'id':kategori.id}) }}">{{kategori.isim}}</a></td>
       </tr>
    {% endfor  %}
    </body>

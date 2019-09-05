@@ -1,6 +1,9 @@
 {%  extends 'base.html.twig' %}
 {% block body %}
-    <strong>Ürün Listesi: </strong>
+
+
+        <a class="nav btn btn-warning"style="width: 15%" href="{{ path('yeni_urun_ekle') }}">Yeni Ürün Ekle</a>
+    <hr><strong>Ürün Listesi: </strong>
     <table>
         <tr>
             <th>İd</th>

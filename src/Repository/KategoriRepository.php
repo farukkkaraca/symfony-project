@@ -17,8 +17,12 @@ class KategoriRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Kategori::class);
-    }
 
+    }
+    public function getAllCategories() {
+        return $this->createQueryBuilder('kategori')
+            ->getQuery()->getArrayResult();
+    }
     // /**
     //  * @return Kategori[] Returns an array of Kategori objects
     //  */

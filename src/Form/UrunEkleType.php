@@ -2,7 +2,6 @@
 
 
 namespace App\Form;
-
 use App\Entity\Kategori;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -11,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UrunDuzenleType extends AbstractType
+class UrunEkleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -20,11 +19,9 @@ class UrunDuzenleType extends AbstractType
             ->add('fiyat', TextType::class)
             ->add('durum', TextType::class)
             ->add('kategori', EntityType::class, ['class' => Kategori::class, 'choice_label' => 'isim'])
-            ->add('duzenle', SubmitType::class, [
-                'label' => 'Duzenle',
-            ]);
-
-
+            ->add('ekle', SubmitType::class, [
+        'label' => 'Ekle',
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

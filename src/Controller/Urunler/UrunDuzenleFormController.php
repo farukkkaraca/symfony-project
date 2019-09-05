@@ -36,8 +36,6 @@ class UrunDuzenleFormController extends AbstractController
             $this->addFlash('success','Ürün Başarıyla Düzenlendi');
         }
 
-
-
         return $this->render('urun/urun-duzenle.html.twig',[
             'form'=>$form->createView(),
         ]);

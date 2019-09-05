@@ -42,8 +42,8 @@ class Urun
     private $guncellenmeTarihi;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Kategori", inversedBy="uruns", cascade={"remove"})
-     * @ORM\JoinColumn(name="kategori_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Kategori", inversedBy="uruns")
+     * @ORM\JoinColumn(name="kategori_id", referencedColumnName="id")
      */
     private $kategori;
 
@@ -123,4 +123,5 @@ class Urun
 
         return $this;
     }
+
 }
