@@ -24,7 +24,8 @@ class Kategori
     private $isim;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Urun", mappedBy="kategori")
+     * @ORM\OneToMany(targetEntity="App\Entity\Urun", mappedBy="kategori", cascade={"remove"}))
+     * @ORM\JoinColumn(name="kategori_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $uruns;
 

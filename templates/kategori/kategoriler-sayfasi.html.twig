@@ -2,13 +2,12 @@
 {% block body %}
    <table>
 
-      <th>>>>>>>>>KATEGORİLER<<<<<<<</th>
-
+      <th>KATEGORİLER</th>
 
    <body>
    {% for kategori in kategori %}
       <tr>
-         <td><a class="nav btn btn-warning" style="background-color: #F5871F" teal" href="{{ path('kategoriler_id',{'id':kategori.id}) }}">{{kategori.isim}}</a></td>
+         <td><a class="nav btn btn-warning" style="animation: alternate" href="{{ path('kategoriler_id',{'id':kategori.id}) }}">{{kategori.isim}}</a></td>
       </tr>
    {% endfor  %}
    </body>
@@ -25,8 +24,6 @@
          text-align: left;
          padding: 5px;
          }
-
-
 
       {% endblock %}
 

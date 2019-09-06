@@ -19,6 +19,22 @@ class UrunRepository extends ServiceEntityRepository
         parent::__construct($registry, Urun::class);
     }
 
+    public function UrunSirala(int $min_fiyat,int $max_fiyat,string $isim)
+    {
+        $qb=$this->createQueryBuilder('u')
+            ->andWhere('u.isim like  :isim')
+            ->setParameter('isim','%'.$isim.'%')
+            ->andWhere('u.fiyat>:min_fiyat')
+            ->setParameter('min_fiyat',$min_fiyat)
+            ->andWhere('u.fiyat<:max_fiyat')
+            ->setParameter('max_fiyat',$max_fiyat)
+            ->orderBy('u.fiyat')
+            ->getQuery();
+
+        return $qb->execute();
+
+    }
+
     // /**
     //  * @return Urun[] Returns an array of Urun objects
     //  */

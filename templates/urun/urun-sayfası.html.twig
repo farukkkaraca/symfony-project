@@ -2,8 +2,18 @@
 {% block body %}
 
 
-        <a class="nav btn btn-warning"style="width: 15%" href="{{ path('yeni_urun_ekle') }}">Yeni Ürün Ekle</a>
-    <hr><strong>Ürün Listesi: </strong>
+
+       <form>
+<br>
+           İsim:<input type="text" name="isim"style="width: 100px">
+           En Az Fiyat:<input type="number" name="min-fiyat"style="width: 100px">
+           En Fazla Fiyat<input type="number" name="max-fiyat"style="width: 100px">
+
+           <input type="submit" value="Sırala" style="background-color: cornflowerblue">
+
+    </form>
+    <br>
+    <strong>Ürün Listesi: </strong>
     <table>
         <tr>
             <th>İd</th>

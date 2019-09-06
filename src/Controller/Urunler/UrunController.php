@@ -16,13 +16,25 @@ class UrunController extends AbstractController
      * @Route("/urunler",name="urunler_listesi")
      * @return Response
      */
-    public function listeleme()
+    public function listeleme(Request $request)
     {
-
         $urunrepository=$this->getDoctrine()->getRepository(Urun::class);
+        $isim=$request->get('isim');
+        $min_fiyat= $request->get('min-fiyat');
+        $max_fiyat=$request->get('max-fiyat');
+
         $urunler=$urunrepository->findAll();
+        if(!$min_fiyat && !$max_fiyat && !$isim){
+
+            return $this->render('urun/urun-sayfası.html.twig',[
+                'urunler'=>$urunler,
+            ]);
+
+        }
+
         return $this->render('urun/urun-sayfası.html.twig',[
-            'urunler'=>$urunler,
+            'urunler'=>
+            $urunrepository->UrunSirala($min_fiyat,$max_fiyat,$isim),
         ]);
 
     }
@@ -85,5 +97,7 @@ class UrunController extends AbstractController
         ]);
 
     }
+
+
 
 }

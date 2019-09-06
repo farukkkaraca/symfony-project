@@ -47,7 +47,7 @@ class KategoriController extends AbstractController
         $em=$this->getDoctrine()->getManager();
 
         $kategori=new Kategori();
-        $kategori->setIsim('Ev Aletleri');
+        $kategori->setIsim('Akıllı Yaşam');
 
         $em->persist($kategori);
 
