@@ -34,6 +34,16 @@ class UrunRepository extends ServiceEntityRepository
         return $qb->execute();
 
     }
+    public function UrunleriGetir()
+    {
+            $qb2=$this->createQueryBuilder('ug')
+            ->orderBy('ug.id');
+    }
+    public function UrunGetir()
+    {
+        $qb3=$this->createQueryBuilder('u')
+            ->orderBy('u.fiyat');
+    }
 
     // /**
     //  * @return Urun[] Returns an array of Urun objects

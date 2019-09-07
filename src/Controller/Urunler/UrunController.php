@@ -3,11 +3,11 @@
 namespace App\Controller\Urunler;
 use App\Entity\Urun;
 use App\Form\UrunEkleType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
 class UrunController extends AbstractController
 {
 
@@ -16,26 +16,32 @@ class UrunController extends AbstractController
      * @Route("/urunler",name="urunler_listesi")
      * @return Response
      */
-    public function listeleme(Request $request)
+    public function listeleme(Request $request ,PaginatorInterface $paginator)
     {
+
         $urunrepository=$this->getDoctrine()->getRepository(Urun::class);
         $isim=$request->get('isim');
         $min_fiyat= $request->get('min-fiyat');
         $max_fiyat=$request->get('max-fiyat');
 
         $urunler=$urunrepository->findAll();
-        if(!$min_fiyat && !$max_fiyat && !$isim){
+        $listUrunler = $paginator->paginate($urunler,$request->query->getInt('page', 1),
+        );
 
-            return $this->render('urun/urun-sayfası.html.twig',[
-                'urunler'=>$urunler,
+        if($min_fiyat && $max_fiyat && $isim){
+
+            return $this->render('urun/urun-sorgu.html.twig', [
+                'urunler' =>
+                    $urunrepository->UrunSirala($min_fiyat, $max_fiyat, $isim),
             ]);
 
         }
 
         return $this->render('urun/urun-sayfası.html.twig',[
-            'urunler'=>
-            $urunrepository->UrunSirala($min_fiyat,$max_fiyat,$isim),
+            'urunler'=>$listUrunler,
         ]);
+
+
 
     }
 
@@ -46,7 +52,6 @@ class UrunController extends AbstractController
      */
     public function goruntule(Urun $urun)
     {
-
         return new Response($this->renderView('urun/urun-bilgileri.html.twig',[
             'urun'=>$urun,
         ]));

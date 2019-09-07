@@ -36,6 +36,10 @@
         {% endfor  %}
         </body>
     </table>
+    <div
+        class="navigation">
+        {{ knp_pagination_render(urunler)}}
+    </div>
 <br><br>
 {% endblock %}
 {% block style %}
