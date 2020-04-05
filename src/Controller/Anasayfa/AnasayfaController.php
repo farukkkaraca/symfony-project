@@ -15,5 +15,6 @@ class AnasayfaController extends AbstractController
     {
         return $this->render('anasayfa/anasayfa.html.twig');
 
+
     }
 }

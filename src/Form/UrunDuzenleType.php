@@ -23,8 +23,6 @@ class UrunDuzenleType extends AbstractType
             ->add('duzenle', SubmitType::class, [
                 'label' => 'Duzenle',
             ]);
-
-
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -1,15 +1,12 @@
 {%  extends 'base.html.twig' %}
 {% block body %}
-
-
-
        <form>
 <br>
            İsim:<input type="text" name="isim"style="width: 100px">
            En Az Fiyat:<input type="number" name="min-fiyat"style="width: 100px">
            En Fazla Fiyat<input type="number" name="max-fiyat"style="width: 100px">
 
-           <input type="submit" value="Sırala" style="background-color: cornflowerblue">
+           <input type="submit" value="Ürün Ara" style="background-color: cornflowerblue">
 
     </form>
     <br>
@@ -53,9 +50,5 @@
     text-align: left;
     padding: 8px;
     }
-    tr:nth-child(even) {
-    background-color: #dddddd;
-    }
-
-
+    tr:nth-child(even)
 {% endblock %}

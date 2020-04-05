@@ -1,6 +1,11 @@
 <!doctype html>
-<html lang="tr">
+<html lang="tr" >
+<link href="{{ asset('asset/main.css') }}" rel="stylesheet"/>
+
 <head>
+
+
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -13,12 +18,9 @@
 
 </head>
 
-<body>
-{% block stylesheets %}
-    <link href="{{ asset('css/arkaplan.jpg') }}" rel="stylesheet"/>
-{% endblock %}
 
 <header>
+
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 
         <div class="container">
@@ -39,12 +41,15 @@
                     <li>
                         <a class="nav-link" href="{{ path('kategoriler') }}">Kategoriler</a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="{{ path('bize_ulasin') }}">Bize Ulaşın</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 </header><br>
-
+<body>
 <main role="main" class="container main">
 
     {% for message in app.flashes('success') %}
@@ -61,8 +66,6 @@
 
 <style>
     {% block style %}
-    {% endblock %}
-    {% block style2 %}
     {% endblock %}
 
 </style>

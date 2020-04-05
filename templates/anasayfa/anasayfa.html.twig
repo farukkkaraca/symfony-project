@@ -1,7 +1,17 @@
 {%  extends 'base.html.twig' %}
 {% block body %}
-    <head>
-    <strong><br>Hoşgeldiniz</strong>
-    </head>
-    <body><br>Burası sitenin anasayfası</body>
+    <link href="{{ asset('asset/main.css') }}" rel="stylesheet"/>
+
+    <h2><br>Hoşgeldiniz</h2>
+
+
+    <br>
+    <h6>Milyonlarca ürün ile alışverişin tadını çıkarın.</h6>
+    <br>
+
+    Hemen alışveriş yapmak için  <a class="nav-button"  href="{{ path('urunler_listesi') }}">  tıklayın</a>
 {% endblock %}
+
+
+
+

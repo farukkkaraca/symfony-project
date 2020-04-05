@@ -2,6 +2,7 @@
 
 namespace App\Controller\Urunler;
 use App\Entity\Urun;
+use App\Form\UrunDuzenleType;
 use App\Form\UrunEkleType;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,38 +11,27 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 class UrunController extends AbstractController
 {
-
-    //Ürün Listeleme
     /**
      * @Route("/urunler",name="urunler_listesi")
      * @return Response
      */
+
     public function listeleme(Request $request ,PaginatorInterface $paginator)
     {
 
         $urunrepository=$this->getDoctrine()->getRepository(Urun::class);
-        $isim=$request->get('isim');
-        $min_fiyat= $request->get('min-fiyat');
-        $max_fiyat=$request->get('max-fiyat');
 
-        $urunler=$urunrepository->findAll();
-        $listUrunler = $paginator->paginate($urunler,$request->query->getInt('page', 1),
+        $ad=$request->get('isim',"");
+        $min_fyt= $request->get('min-fiyat',0);
+        $max_fyt=$request->get('max-fiyat',1000000);
+
+        $queryBuilder=$urunrepository->UrunSirala($min_fiyat=$min_fyt,$max_fiyat=$max_fyt,$isim=$ad);
+        $listUrunler = $paginator->paginate($queryBuilder,$request->query->getInt('page', 1),
+            20
         );
-
-        if($min_fiyat && $max_fiyat && $isim){
-
-            return $this->render('urun/urun-sorgu.html.twig', [
-                'urunler' =>
-                    $urunrepository->UrunSirala($min_fiyat, $max_fiyat, $isim),
-            ]);
-
-        }
-
         return $this->render('urun/urun-sayfası.html.twig',[
             'urunler'=>$listUrunler,
         ]);
-
-
 
     }
 
@@ -100,6 +90,39 @@ class UrunController extends AbstractController
         return $this->render('urun/urun-ekle-form.html.twig',[
             'form'=>$form->createView()
         ]);
+
+    }
+
+    //ürün düzenleme formu
+
+    /**
+     * @Route("urunler/duzenle/{id}",name="urun_duzenle")
+     * @param Request $request
+     * @return Response
+     * @throws \Exception
+     */
+    public function urunDuzenle(Request $request,$id)
+    {
+        $urun=$this->getDoctrine()->getRepository(Urun::class)->find($id);
+
+        $form=$this->createForm(UrunDuzenleType::class,$urun);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $urun->setGuncellenmeTarihi(new \DateTime());
+
+            $urun = $form->getData();
+            $em->persist($urun);
+            $em->flush();
+            $this->addFlash('success','Ürün Başarıyla Düzenlendi');
+        }
+
+        return $this->render('urun/urun-duzenle.html.twig',[
+            'form'=>$form->createView(),
+        ]);
+
 
     }
 
